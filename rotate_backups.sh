@@ -31,7 +31,7 @@ function clean_up
 
 function check_duplicate
 {
-	ls 11_20_2013.tgz.g3g > /dev/null 2>&1
+	ls $destination_path/$current_date.tgz.gpg > /dev/null 2>&1
 	if [ "$?" -eq 0 ]
 	then
 		echo -n 'Removing Duplicate'
