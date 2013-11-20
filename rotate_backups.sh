@@ -47,12 +47,12 @@ then
 	echo "Source Backup Directory: $source_folder Doesn't exist. Exiting."
 	exit 1
 else
+	echo '...Rotating Remote Backup Files...'
+
 	# Checking for repeat backup. Remove old if necessary
 	check_duplicate
 
 	# Creating archive of the source_folder
-	echo '...Rotating Remote Backup Files...'
-
 	echo -n 'Archiving the backup'
 	tar czf $destination_path/$current_date.tgz -C $source_folder . > /dev/null 2>&1
 	error_check $?
