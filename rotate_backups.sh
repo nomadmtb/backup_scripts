@@ -29,6 +29,17 @@ function clean_up
 	rm $destination_path/$current_date.tgz
 }
 
+function check_duplicate
+{
+	ls 11_20_2013.tgz.g3g > /dev/null 2>&1
+	if [ "$?" -eq 0 ]
+	then
+		echo -n 'Removing Duplicate'
+		echo -e "\t\t \033[47;31;1mREMOVED\033[0m"
+		rm $destination_path/$current_date.tgz.gpg
+	fi
+}
+
 # Main
 
 if [ ! -d $source_folder ]
@@ -36,6 +47,9 @@ then
 	echo "Source Backup Directory: $source_folder Doesn't exist. Exiting."
 	exit 1
 else
+	# Checking for repeat backup. Remove old if necessary
+	check_duplicate
+
 	# Creating archive of the source_folder
 	echo '...Rotating Remote Backup Files...'
 
